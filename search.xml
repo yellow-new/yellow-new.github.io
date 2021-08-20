@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2021/08/20/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>MATLAB C2000----- 例程（二）------ADC触发PWM</title>
     <url>/2021/08/21/ADC%E8%A7%A6%E5%8F%91PWM/</url>
     <content><![CDATA[<h1 id="MATLAB-C2000—–-例程（二）——ADC触发PWM"><a href="#MATLAB-C2000—–-例程（二）——ADC触发PWM" class="headerlink" title="MATLAB C2000—– 例程（二）——ADC触发PWM"></a>MATLAB C2000—– 例程（二）——ADC触发PWM</h1><p>官方例程链接如下：<a href="https://ww2.mathworks.cn/help/supportpkg/texasinstrumentsc2000/examples.html?category=index&s_tid=CRUX_topnav">MATLAB</a></p>
 <span id="more"></span> 
 
 <h2 id="一-模型"><a href="#一-模型" class="headerlink" title="一.模型"></a>一.模型</h2><p>总系统由两哥子系统组成一个中断触发 一个ADC-PWM</p>
-<p><img src="images%5CADCPWM1.png"></p>
+<p><img src="/images/ADCPWM1.png"></p>
 <p><strong>ADC-PWM系统</strong></p>
-<p><img src="images%5CADCPWM2.png"></p>
+<p><img src="/images/ADCPWM2.png"></p>
 <p>ADC触发pwm并且adc的输出为pwm的duty的输入，且为五倍关系。</p>
 <h2 id="二-烧入过程"><a href="#二-烧入过程" class="headerlink" title="二.烧入过程"></a>二.烧入过程</h2><p><a href="">与上篇文章相似</a></p>
 <h2 id="三-代码分析"><a href="#三-代码分析" class="headerlink" title="三.代码分析"></a>三.代码分析</h2><p>我们先看一下所生成的文件</p>
-<p><img src="images%5CADCPWM3.png"></p>
+<p><img src="/images/ADCPWM3.png"></p>
 <p>如红框所示 这些为所生成的文件</p>
 <ul>
 <li><p>c2807x_2837xx_adcpwmasynctest_ert_data.c </p>
@@ -69,23 +87,5 @@
         <tag>dsp</tag>
         <tag>simulink</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/08/20/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
