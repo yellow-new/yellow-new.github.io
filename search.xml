@@ -23,7 +23,7 @@
   <entry>
     <title>MATLAB C2000----- 例程（二）------ADC触发PWM</title>
     <url>/2021/08/21/ADC%E8%A7%A6%E5%8F%91PWM/</url>
-    <content><![CDATA[<h1 id="MATLAB-C2000—–-例程（二）——ADC触发PWM"><a href="#MATLAB-C2000—–-例程（二）——ADC触发PWM" class="headerlink" title="MATLAB C2000—– 例程（二）——ADC触发PWM"></a>MATLAB C2000—– 例程（二）——ADC触发PWM</h1><p>官方例程链接如下：<a href="https://ww2.mathworks.cn/help/supportpkg/texasinstrumentsc2000/examples.html?category=index&s_tid=CRUX_topnav">MATLAB</a></p>
+    <content><![CDATA[<p>官方例程链接如下：<a href="https://ww2.mathworks.cn/help/supportpkg/texasinstrumentsc2000/examples.html?category=index&s_tid=CRUX_topnav">MATLAB</a></p>
 <h2 id="一-模型"><a href="#一-模型" class="headerlink" title="一.模型"></a>一.模型</h2><p>总系统由两哥子系统组成一个中断触发 一个ADC-PWM</p>
 <p><img src="/images/ADCPWM1.png"></p>
 <span id="more"></span> 
