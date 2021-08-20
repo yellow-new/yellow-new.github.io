@@ -7,13 +7,13 @@
 <span id="more"></span> 
 
 <h2 id="一-模型"><a href="#一-模型" class="headerlink" title="一.模型"></a>一.模型</h2><p>总系统由两哥子系统组成一个中断触发 一个ADC-PWM</p>
-<p><img src="E:\Blog\YellowNewBlog\public\images\ADCPWM1.png"></p>
+<p><img src="images%5CADCPWM1.png"></p>
 <p><strong>ADC-PWM系统</strong></p>
-<p><img src="E:\Blog\YellowNewBlog\public\images\ADCPWM2.png"></p>
+<p><img src="images%5CADCPWM2.png"></p>
 <p>ADC触发pwm并且adc的输出为pwm的duty的输入，且为五倍关系。</p>
 <h2 id="二-烧入过程"><a href="#二-烧入过程" class="headerlink" title="二.烧入过程"></a>二.烧入过程</h2><p><a href="">与上篇文章相似</a></p>
 <h2 id="三-代码分析"><a href="#三-代码分析" class="headerlink" title="三.代码分析"></a>三.代码分析</h2><p>我们先看一下所生成的文件</p>
-<p><img src="E:\Blog\YellowNewBlog\public\images\ADCPWM3.png"></p>
+<p><img src="images%5CADCPWM3.png"></p>
 <p>如红框所示 这些为所生成的文件</p>
 <ul>
 <li><p>c2807x_2837xx_adcpwmasynctest_ert_data.c </p>
