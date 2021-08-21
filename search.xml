@@ -128,6 +128,8 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">电赛训练题，主程序主要为 双路adc+单路epwm+pid算法</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://img-blog.csdnimg.cn/20210512112144593.JPG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1N0ZXZlbl9uZXdfaA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<span id="more"></span> 
+
 <h3 id="（1）-思维导图"><a href="#（1）-思维导图" class="headerlink" title="（1） 思维导图"></a>（1） 思维导图</h3><p><img src="https://img-blog.csdnimg.cn/20210512112158975.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1N0ZXZlbl9uZXdfaA==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h3 id="（2）BUCK电路实物演示"><a href="#（2）BUCK电路实物演示" class="headerlink" title="（2）BUCK电路实物演示"></a>（2）BUCK电路实物演示</h3><div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
    <iframe src="//player.bilibili.com/player.html?aid=972482870&bvid=BV1hp4y187gk&cid=317770147&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
