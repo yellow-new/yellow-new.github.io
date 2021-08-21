@@ -74,7 +74,7 @@
     <title>MATLAB C2000 例程（一）---GPIO点灯</title>
     <url>/2021/08/21/GPIO%20%E7%82%B9%E7%81%AF/</url>
     <content><![CDATA[<p> 官方链接<a href="https://ww2.mathworks.cn/help/supportpkg/texasinstrumentsc2000/ug/getting-started-example.html">MATLAB 点灯</a></p>
-<h2 id="（一）模型"><a href="#（一）模型" class="headerlink" title="（一）模型"></a>（一）模型</h2><p><img src="/image/MATLAB1.png"></p>
+<h2 id="（一）模型"><a href="#（一）模型" class="headerlink" title="（一）模型"></a>（一）模型</h2><p><img src="/image/ADCPWM1.png"></p>
 <p>前面模块为时间模块 后面为gpio口 设置了翻转模式 这个为最简单的模式</p>
 <span id="more"></span> 
 
