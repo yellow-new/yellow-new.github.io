@@ -1,57 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/08/20/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span> 
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>MATLAB C2000 例程（一）---GPIO点灯</title>
-    <url>/2021/08/21/GPIO%20%E7%82%B9%E7%81%AF/</url>
-    <content><![CDATA[<p> 官方链接<a href="https://ww2.mathworks.cn/help/supportpkg/texasinstrumentsc2000/ug/getting-started-example.html">MATLAB 点灯</a></p>
-<h2 id="（一）模型"><a href="#（一）模型" class="headerlink" title="（一）模型"></a>（一）模型</h2><p><img src="/images/MATLAB1.png"></p>
-<p>前面模块为时间模块 后面为gpio口 设置了翻转模式 这个为最简单的模式</p>
-<span id="more"></span> 
-
-<p><img src="/images/MATLAB2.png"></p>
-<h2 id="（二）烧入过程"><a href="#（二）烧入过程" class="headerlink" title="（二）烧入过程"></a>（二）烧入过程</h2><ol>
-<li>“CTRL+E”打开设置</li>
-</ol>
-<p><img src="/images/MATLAB3.png"></p>
-<ol start="2">
-<li>选择一下设置之后,准备烧入板卡</li>
-</ol>
-<p><img src="/images/MATLAB.png"></p>
-<ol start="3">
-<li>等待一段时间会在你的工作路径下生成对应的文件当然会生成ccs代码</li>
-</ol>
-<p><img src="/images/MATLAB4.png"></p>
-<h2 id="（三）物理现象"><a href="#（三）物理现象" class="headerlink" title="（三）物理现象"></a>（三）物理现象</h2><p><img src="/images/diandeng.gif"></p>
-<h2 id="四）代码分析"><a href="#四）代码分析" class="headerlink" title="(四）代码分析"></a>(四）代码分析</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * File: ert_main.c</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Code generated for Simulink model &#x27;c28379D_cpu1_blink&#x27;.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Model version                  : 2.0</span></span><br><span class="line"><span class="comment"> * Simulink Coder version         : 9.5 (R2021a) 14-Nov-2020</span></span><br><span class="line"><span class="comment"> * C/C++ source code generated on : Wed Aug  4 22:46:51 2021</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Target selection: ert.tlc</span></span><br><span class="line"><span class="comment"> * Embedded hardware selection: Texas Instruments-&gt;C2000</span></span><br><span class="line"><span class="comment"> * Code generation objectives: Unspecified</span></span><br><span class="line"><span class="comment"> * Validation result: Not run</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;c28379D_cpu1_blink.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;rtwtypes.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">volatile</span> <span class="keyword">int</span> IsrOverrun = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">static</span> boolean_T OverrunFlag = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rt_OneStep</span><span class="params">(<span class="keyword">void</span>)</span>  		<span class="comment">// 该函数放在定时器当中的</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//启延时作用</span></span><br><span class="line">  <span class="comment">/* Check for overrun. Protect OverrunFlag against preemption */</span></span><br><span class="line">  <span class="keyword">if</span> (OverrunFlag++) &#123;</span><br><span class="line">    IsrOverrun = <span class="number">1</span>;</span><br><span class="line">    OverrunFlag--;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">//开启定时器中断</span></span><br><span class="line">  enableTimer0Interrupt();</span><br><span class="line"><span class="comment">//io口电平翻转函数    </span></span><br><span class="line">  c28379D_cpu1_blink_step();</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Get model outputs here */</span></span><br><span class="line">  disableTimer0Interrupt();</span><br><span class="line">  OverrunFlag--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">volatile</span> boolean_T stopRequested; <span class="comment">// </span></span><br><span class="line"><span class="keyword">volatile</span> boolean_T runModel;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">//状态标志位</span></span><br><span class="line">  <span class="keyword">float</span> modelBaseRate = <span class="number">1.0</span>;</span><br><span class="line">    晶振时钟频率</span><br><span class="line">  <span class="keyword">float</span> systemClock = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Initialize variables */</span></span><br><span class="line">  stopRequested = <span class="literal">false</span>;</span><br><span class="line">  runModel = <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">//烧入flash</span></span><br><span class="line">  c2000_flash_init();</span><br><span class="line">    <span class="comment">//板子外设初始化</span></span><br><span class="line">  init_board();</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> MW_EXEC_PROFILER_ON</span></span><br><span class="line"><span class="comment">// 暂时不知道是干什么的&#123;可能为调试&#125;</span></span><br><span class="line">  config_profilerTimer();</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line">  rtmSetErrorStatus(c28379D_cpu1_blink_M, <span class="number">0</span>);<span class="comment">//初始化标志位</span></span><br><span class="line">  c28379D_cpu1_blink_initialize();<span class="comment">//初始化在simulink中设置的初始化</span></span><br><span class="line">  globalInterruptDisable();</span><br><span class="line">  configureTimer0(modelBaseRate, systemClock);</span><br><span class="line">  runModel =</span><br><span class="line">    rtmGetErrorStatus(c28379D_cpu1_blink_M) == (<span class="literal">NULL</span>);</span><br><span class="line">  enableTimer0Interrupt();</span><br><span class="line">  globalInterruptEnable();</span><br><span class="line">  <span class="keyword">while</span> (runModel) &#123;</span><br><span class="line">    stopRequested = !(</span><br><span class="line">                      rtmGetErrorStatus(c28379D_cpu1_blink_M) == (<span class="literal">NULL</span>));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Disable rt_OneStep() here */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Terminate model */</span></span><br><span class="line">  c28379D_cpu1_blink_terminate();</span><br><span class="line">  globalInterruptDisable();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * File trailer for generated code.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [EOF]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>​    详细代码需要自己区理解</p>
-]]></content>
-      <tags>
-        <tag>c2000</tag>
-        <tag>simulink</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MATLAB C2000 例程（二）---ADC触发PWM</title>
     <url>/2021/08/21/ADC%E8%A7%A6%E5%8F%91PWM/</url>
     <content><![CDATA[<p>官方例程链接如下：<a href="https://ww2.mathworks.cn/help/supportpkg/texasinstrumentsc2000/examples.html?category=index&s_tid=CRUX_topnav">MATLAB</a></p>
@@ -180,5 +129,56 @@
         <tag>c2000</tag>
         <tag>电力电子技术</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>MATLAB C2000 例程（一）---GPIO点灯</title>
+    <url>/2021/08/21/GPIO%20%E7%82%B9%E7%81%AF/</url>
+    <content><![CDATA[<p> 官方链接<a href="https://ww2.mathworks.cn/help/supportpkg/texasinstrumentsc2000/ug/getting-started-example.html">MATLAB 点灯</a></p>
+<h2 id="（一）模型"><a href="#（一）模型" class="headerlink" title="（一）模型"></a>（一）模型</h2><p><img src="/images/MATLAB1.png"></p>
+<p>前面模块为时间模块 后面为gpio口 设置了翻转模式 这个为最简单的模式</p>
+<span id="more"></span> 
+
+<p><img src="/images/MATLAB2.png"></p>
+<h2 id="（二）烧入过程"><a href="#（二）烧入过程" class="headerlink" title="（二）烧入过程"></a>（二）烧入过程</h2><ol>
+<li>“CTRL+E”打开设置</li>
+</ol>
+<p><img src="/images/MATLAB3.png"></p>
+<ol start="2">
+<li>选择一下设置之后,准备烧入板卡</li>
+</ol>
+<p><img src="/images/MATLAB.png"></p>
+<ol start="3">
+<li>等待一段时间会在你的工作路径下生成对应的文件当然会生成ccs代码</li>
+</ol>
+<p><img src="/images/MATLAB4.png"></p>
+<h2 id="（三）物理现象"><a href="#（三）物理现象" class="headerlink" title="（三）物理现象"></a>（三）物理现象</h2><p><img src="/images/diandeng.gif"></p>
+<h2 id="四）代码分析"><a href="#四）代码分析" class="headerlink" title="(四）代码分析"></a>(四）代码分析</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * File: ert_main.c</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Code generated for Simulink model &#x27;c28379D_cpu1_blink&#x27;.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Model version                  : 2.0</span></span><br><span class="line"><span class="comment"> * Simulink Coder version         : 9.5 (R2021a) 14-Nov-2020</span></span><br><span class="line"><span class="comment"> * C/C++ source code generated on : Wed Aug  4 22:46:51 2021</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Target selection: ert.tlc</span></span><br><span class="line"><span class="comment"> * Embedded hardware selection: Texas Instruments-&gt;C2000</span></span><br><span class="line"><span class="comment"> * Code generation objectives: Unspecified</span></span><br><span class="line"><span class="comment"> * Validation result: Not run</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;c28379D_cpu1_blink.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;rtwtypes.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">volatile</span> <span class="keyword">int</span> IsrOverrun = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">static</span> boolean_T OverrunFlag = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rt_OneStep</span><span class="params">(<span class="keyword">void</span>)</span>  		<span class="comment">// 该函数放在定时器当中的</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//启延时作用</span></span><br><span class="line">  <span class="comment">/* Check for overrun. Protect OverrunFlag against preemption */</span></span><br><span class="line">  <span class="keyword">if</span> (OverrunFlag++) &#123;</span><br><span class="line">    IsrOverrun = <span class="number">1</span>;</span><br><span class="line">    OverrunFlag--;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">//开启定时器中断</span></span><br><span class="line">  enableTimer0Interrupt();</span><br><span class="line"><span class="comment">//io口电平翻转函数    </span></span><br><span class="line">  c28379D_cpu1_blink_step();</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Get model outputs here */</span></span><br><span class="line">  disableTimer0Interrupt();</span><br><span class="line">  OverrunFlag--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">volatile</span> boolean_T stopRequested; <span class="comment">// </span></span><br><span class="line"><span class="keyword">volatile</span> boolean_T runModel;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">//状态标志位</span></span><br><span class="line">  <span class="keyword">float</span> modelBaseRate = <span class="number">1.0</span>;</span><br><span class="line">    晶振时钟频率</span><br><span class="line">  <span class="keyword">float</span> systemClock = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Initialize variables */</span></span><br><span class="line">  stopRequested = <span class="literal">false</span>;</span><br><span class="line">  runModel = <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">//烧入flash</span></span><br><span class="line">  c2000_flash_init();</span><br><span class="line">    <span class="comment">//板子外设初始化</span></span><br><span class="line">  init_board();</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> MW_EXEC_PROFILER_ON</span></span><br><span class="line"><span class="comment">// 暂时不知道是干什么的&#123;可能为调试&#125;</span></span><br><span class="line">  config_profilerTimer();</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">  ;</span><br><span class="line">  rtmSetErrorStatus(c28379D_cpu1_blink_M, <span class="number">0</span>);<span class="comment">//初始化标志位</span></span><br><span class="line">  c28379D_cpu1_blink_initialize();<span class="comment">//初始化在simulink中设置的初始化</span></span><br><span class="line">  globalInterruptDisable();</span><br><span class="line">  configureTimer0(modelBaseRate, systemClock);</span><br><span class="line">  runModel =</span><br><span class="line">    rtmGetErrorStatus(c28379D_cpu1_blink_M) == (<span class="literal">NULL</span>);</span><br><span class="line">  enableTimer0Interrupt();</span><br><span class="line">  globalInterruptEnable();</span><br><span class="line">  <span class="keyword">while</span> (runModel) &#123;</span><br><span class="line">    stopRequested = !(</span><br><span class="line">                      rtmGetErrorStatus(c28379D_cpu1_blink_M) == (<span class="literal">NULL</span>));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Disable rt_OneStep() here */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Terminate model */</span></span><br><span class="line">  c28379D_cpu1_blink_terminate();</span><br><span class="line">  globalInterruptDisable();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * File trailer for generated code.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * [EOF]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>​    详细代码需要自己区理解</p>
+]]></content>
+      <tags>
+        <tag>c2000</tag>
+        <tag>simulink</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/08/20/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span> 
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
 </search>
