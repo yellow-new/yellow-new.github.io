@@ -3,8 +3,8 @@
   <entry>
     <title>MATLAB C2000 例程（一）---GPIO点灯</title>
     <url>/2021/08/21/GPIO%20%E7%82%B9%E7%81%AF/</url>
-    <content><![CDATA[<p> 官方链接<a href="https://ww2.mathworks.cn/help/supportpkg/texasinstrumentsc2000/ug/getting-started-example.html">MATLAB 点灯</a></p>
-<h2 id="（一）模型"><a href="#（一）模型" class="headerlink" title="（一）模型"></a>（一）模型</h2><p><img src="/images/MATLAB1.png"></p>
+    <content><![CDATA[<p> 官方链接链接如下：<a href="https://ww2.mathworks.cn/help/supportpkg/texasinstrumentsc2000/ug/getting-started-example.html">MATLAB </a></p>
+<h2 id="一-模型"><a href="#一-模型" class="headerlink" title="一 模型"></a>一 模型</h2><p><img src="/images/MATLAB1.png"></p>
 <p>前面模块为时间模块 后面为gpio口 设置了翻转模式 这个为最简单的模式</p>
 <span id="more"></span> 
 
@@ -52,10 +52,10 @@
 ]]></content>
   </entry>
   <entry>
-    <title>MATLAB C2000 例程（二）---ADC触发PWM</title>
+    <title>MATLAB C2000 例程（二） ---ADC触发PWM</title>
     <url>/2021/08/21/ADC%E8%A7%A6%E5%8F%91PWM/</url>
     <content><![CDATA[<p>官方例程链接如下：<a href="https://ww2.mathworks.cn/help/supportpkg/texasinstrumentsc2000/examples.html?category=index&s_tid=CRUX_topnav">MATLAB</a></p>
-<h2 id="一-模型"><a href="#一-模型" class="headerlink" title="一.模型"></a>一.模型</h2><p>总系统由两哥子系统组成一个中断触发 一个ADC-PWM</p>
+<h2 id="一-模型"><a href="#一-模型" class="headerlink" title="一.模型"></a>一.模型</h2><p>总系统由两个子系统组成一个中断触发 一个ADC-PWM</p>
 <p><img src="/images/ADCPWM1.png"></p>
 <span id="more"></span> 
 
@@ -122,7 +122,7 @@
       </tags>
   </entry>
   <entry>
-    <title>电赛训练---稳压降压电路（Buck）</title>
+    <title>电赛训练---双闭环降压电路（Buck）</title>
     <url>/2021/03/20/DSP-BUCK%E7%94%B5%E8%B7%AF/</url>
     <content><![CDATA[<h3 id="1-BUCK电路展示"><a href="#1-BUCK电路展示" class="headerlink" title="1.BUCK电路展示"></a>1.BUCK电路展示</h3><hr>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">电赛训练题，主程序主要为 双路adc+单路epwm+pid算法</span><br></pre></td></tr></table></figure>
