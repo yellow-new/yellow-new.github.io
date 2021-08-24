@@ -233,7 +233,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/24/CLA+Sinulink/" class="post-title-link" itemprop="url">MATLAB C2000 例程（三） ---CLA与CPU交互控制LED闪烁</a>
+          <a href="/2021/08/24/CLA+Sinulink/" class="post-title-link" itemprop="url">MATLAB C2000 例程（三）---CLA与CPU交互blink LED</a>
         </h2>
 
         <div class="post-meta-container">
@@ -251,7 +251,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-25 00:00:00" itemprop="dateModified" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
+        <time title="修改时间：2021-08-25 00:03:21" itemprop="dateModified" datetime="2021-08-25T00:03:21+08:00">2021-08-25</time>
       </span>
 
   
@@ -359,7 +359,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-25 00:00:54" itemprop="dateModified" datetime="2021-08-25T00:00:54+08:00">2021-08-25</time>
+        <time title="修改时间：2021-08-25 00:04:08" itemprop="dateModified" datetime="2021-08-25T00:04:08+08:00">2021-08-25</time>
       </span>
 
   
@@ -402,7 +402,7 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="一、Introduction–IQmath"><a href="#一、Introduction–IQmath" class="headerlink" title="一、Introduction–IQmath"></a>一、Introduction–IQmath</h1><p><font color=#999AAA >Ti提供将浮点数转化为定点数的库，可以提高运算速度</p>
 <p>TI手册中的原话：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Texas Instruments TMS320C28x IQmath Library is collection of highly optimized and high precision mathematical functions for C/C++ programmers <span class="selector-tag">to</span> seamlessly port <span class="selector-tag">a</span> floating-point algorithm into fixed point <span class="selector-tag">code</span> on TMS320C28x devices. These routines are typically used in computationally intensive real-<span class="selector-tag">time</span> applications where optimal execution speed and high accuracy is critical. By using these routines you can achieve execution speeds considerable faster than equivalent <span class="selector-tag">code</span> written in standard ANSI C language. In addition, by providing ready-<span class="selector-tag">to</span>-use high precision functions, TI IQmath library can shorten significantly your DSP application development <span class="selector-tag">time</span>.</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	Texas Instruments TMS320C28x IQmath Library is collection of highly optimized and high precision mathematical functions for C/C++ </span><br><span class="line">programmers <span class="selector-tag">to</span> seamlessly port <span class="selector-tag">a</span> floating-point algorithm into fixed point <span class="selector-tag">code</span> on TMS320C28x devices. </span><br><span class="line">These routines are typically used </span><br><span class="line">	in computationally intensive real-<span class="selector-tag">time</span> applications where optimal execution speed and high accuracy is critical.</span><br><span class="line">	By using these routines you can achieve execution speeds considerable faster than equivalent <span class="selector-tag">code</span> written in standard ANSI C language.</span><br><span class="line">	In addition, by providing ready-<span class="selector-tag">to</span>-use high precision functions, TI IQmath library can shorten significantly your DSP application development <span class="selector-tag">time</span>.</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/08/23/IQmath/#more" rel="contents">
