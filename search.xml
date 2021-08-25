@@ -196,12 +196,12 @@
 </li>
 </ul>
 <h2 id="2-Interrupt-trigger—触发条件"><a href="#2-Interrupt-trigger—触发条件" class="headerlink" title="2.Interrupt trigger—触发条件"></a>2.Interrupt trigger—触发条件</h2><ul>
-<li><h3 id="Peripheral-interrupt-trigger（外部中断触发）"><a href="#Peripheral-interrupt-trigger（外部中断触发）" class="headerlink" title="Peripheral interrupt trigger（外部中断触发）"></a>Peripheral interrupt trigger（外部中断触发）</h3><blockquote>
+<li><h3 id="Peripheral-interrupt-trigger（外部中断触发）"><a href="#Peripheral-interrupt-trigger（外部中断触发）" class="headerlink" title="Peripheral interrupt trigger（外部中断触发）"></a>Peripheral interrupt trigger（外部中断触发）</h3></li>
+</ul>
+<blockquote>
 <p>每个Task都可以通过中断源触发</p>
 <p>每个Task都是向DmaClaSrcSelRegs.CLA1TASKSRCSELx[TASKx]写入相应的Value</p>
 </blockquote>
-</li>
-</ul>
 <p><img src="/images/cla2.png" alt="cla1"></p>
 <p><strong>Table 5-1</strong> 为不同触发源对应的Value（部分）</p>
 <ul>
@@ -229,7 +229,7 @@
 <li><p><strong>The MIRUN bit for the task will remain set.</strong></p>
 </li>
 </ul>
-<h1 id="二-SImulink-CLA-for-blighting-an-LED"><a href="#二-SImulink-CLA-for-blighting-an-LED" class="headerlink" title="二 . SImulink CLA for blighting an LED"></a>二 . SImulink CLA for blighting an LED</h1><hr>
+<h1 id="二-SImulink-CLA-for-blighting-an-LED"><a href="#二-SImulink-CLA-for-blighting-an-LED" class="headerlink" title="二.SImulink CLA for blighting an LED"></a>二.SImulink CLA for blighting an LED</h1><hr>
 <p>  <img src="/images/cla4.png" alt="cla4"></p>
 <h2 id="1-烧入过程：详细见上一篇文章"><a href="#1-烧入过程：详细见上一篇文章" class="headerlink" title="1.烧入过程：详细见上一篇文章"></a>1.<a href="https://yellownew.cn/2021/08/21/GPIO%20%E7%82%B9%E7%81%AF/#more">烧入过程：详细见上一篇文章</a></h2><h2 id="2-Simulink-and-Code-分析"><a href="#2-Simulink-and-Code-分析" class="headerlink" title="2.Simulink  and Code  分析"></a>2.Simulink  and Code  分析</h2><h3 id="CLA-Task"><a href="#CLA-Task" class="headerlink" title="CLA Task"></a>CLA Task</h3><p>  simulink ：</p>
 <p>  <img src="/images/cla5.png"></p>

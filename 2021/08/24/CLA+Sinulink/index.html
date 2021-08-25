@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://yellownew.cn/images/cla5.png">
 <meta property="og:image" content="http://yellownew.cn/images/cla6.png">
 <meta property="article:published_time" content="2021-08-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-25T02:02:25.388Z">
+<meta property="article:modified_time" content="2021-08-25T02:07:52.204Z">
 <meta property="article:author" content="YellowNew">
 <meta property="article:tag" content="c2000">
 <meta property="article:tag" content="simulink">
@@ -154,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-CLA-Introduction"><span class="nav-text">一 . CLA  Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CLA-Tasks%E2%80%94CLA%E4%BB%BB%E5%8A%A1"><span class="nav-text">1.CLA Tasks—CLA任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Interrupt-trigger%E2%80%94%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6"><span class="nav-text">2.Interrupt trigger—触发条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Peripheral-interrupt-trigger%EF%BC%88%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD%E8%A7%A6%E5%8F%91%EF%BC%89"><span class="nav-text">Peripheral interrupt trigger（外部中断触发）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Typical-CLA-Initialization-Sequence-CLA%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-text">3.Typical CLA Initialization Sequence (CLA初始化过程)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-CLA-Illegal-Opcode-Behavior-CLA%E9%9D%9E%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-text">4.CLA Illegal Opcode Behavior  (CLA非法指令)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-SImulink-CLA-for-blighting-an-LED"><span class="nav-text">二 . SImulink CLA for blighting an LED</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%83%A7%E5%85%A5%E8%BF%87%E7%A8%8B%EF%BC%9A%E8%AF%A6%E7%BB%86%E8%A7%81%E4%B8%8A%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><span class="nav-text">1.烧入过程：详细见上一篇文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Simulink-and-Code-%E5%88%86%E6%9E%90"><span class="nav-text">2.Simulink  and Code  分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CLA-Task"><span class="nav-text">CLA Task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cla-out"><span class="nav-text">Cla_out</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-Summary"><span class="nav-text">三.  Summary</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-CLA-Introduction"><span class="nav-text">一 . CLA  Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-CLA-Tasks%E2%80%94CLA%E4%BB%BB%E5%8A%A1"><span class="nav-text">1.CLA Tasks—CLA任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Interrupt-trigger%E2%80%94%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6"><span class="nav-text">2.Interrupt trigger—触发条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Peripheral-interrupt-trigger%EF%BC%88%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD%E8%A7%A6%E5%8F%91%EF%BC%89"><span class="nav-text">Peripheral interrupt trigger（外部中断触发）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Typical-CLA-Initialization-Sequence-CLA%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B"><span class="nav-text">3.Typical CLA Initialization Sequence (CLA初始化过程)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-CLA-Illegal-Opcode-Behavior-CLA%E9%9D%9E%E6%B3%95%E6%8C%87%E4%BB%A4"><span class="nav-text">4.CLA Illegal Opcode Behavior  (CLA非法指令)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-SImulink-CLA-for-blighting-an-LED"><span class="nav-text">二.SImulink CLA for blighting an LED</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%83%A7%E5%85%A5%E8%BF%87%E7%A8%8B%EF%BC%9A%E8%AF%A6%E7%BB%86%E8%A7%81%E4%B8%8A%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><span class="nav-text">1.烧入过程：详细见上一篇文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Simulink-and-Code-%E5%88%86%E6%9E%90"><span class="nav-text">2.Simulink  and Code  分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CLA-Task"><span class="nav-text">CLA Task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cla-out"><span class="nav-text">Cla_out</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-Summary"><span class="nav-text">三.  Summary</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -264,7 +264,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-25 10:02:25" itemprop="dateModified" datetime="2021-08-25T10:02:25+08:00">2021-08-25</time>
+        <time title="修改时间：2021-08-25 10:07:52" itemprop="dateModified" datetime="2021-08-25T10:07:52+08:00">2021-08-25</time>
       </span>
 
   
@@ -324,12 +324,12 @@
 </li>
 </ul>
 <h2 id="2-Interrupt-trigger—触发条件"><a href="#2-Interrupt-trigger—触发条件" class="headerlink" title="2.Interrupt trigger—触发条件"></a>2.Interrupt trigger—触发条件</h2><ul>
-<li><h3 id="Peripheral-interrupt-trigger（外部中断触发）"><a href="#Peripheral-interrupt-trigger（外部中断触发）" class="headerlink" title="Peripheral interrupt trigger（外部中断触发）"></a>Peripheral interrupt trigger（外部中断触发）</h3><blockquote>
+<li><h3 id="Peripheral-interrupt-trigger（外部中断触发）"><a href="#Peripheral-interrupt-trigger（外部中断触发）" class="headerlink" title="Peripheral interrupt trigger（外部中断触发）"></a>Peripheral interrupt trigger（外部中断触发）</h3></li>
+</ul>
+<blockquote>
 <p>每个Task都可以通过中断源触发</p>
 <p>每个Task都是向DmaClaSrcSelRegs.CLA1TASKSRCSELx[TASKx]写入相应的Value</p>
 </blockquote>
-</li>
-</ul>
 <p><img src="/images/cla2.png" alt="cla1"></p>
 <p><strong>Table 5-1</strong> 为不同触发源对应的Value（部分）</p>
 <ul>
@@ -357,7 +357,7 @@
 <li><p><strong>The MIRUN bit for the task will remain set.</strong></p>
 </li>
 </ul>
-<h1 id="二-SImulink-CLA-for-blighting-an-LED"><a href="#二-SImulink-CLA-for-blighting-an-LED" class="headerlink" title="二 . SImulink CLA for blighting an LED"></a>二 . SImulink CLA for blighting an LED</h1><hr>
+<h1 id="二-SImulink-CLA-for-blighting-an-LED"><a href="#二-SImulink-CLA-for-blighting-an-LED" class="headerlink" title="二.SImulink CLA for blighting an LED"></a>二.SImulink CLA for blighting an LED</h1><hr>
 <p>  <img src="/images/cla4.png" alt="cla4"></p>
 <h2 id="1-烧入过程：详细见上一篇文章"><a href="#1-烧入过程：详细见上一篇文章" class="headerlink" title="1.烧入过程：详细见上一篇文章"></a>1.<a href="https://yellownew.cn/2021/08/21/GPIO%20%E7%82%B9%E7%81%AF/#more">烧入过程：详细见上一篇文章</a></h2><h2 id="2-Simulink-and-Code-分析"><a href="#2-Simulink-and-Code-分析" class="headerlink" title="2.Simulink  and Code  分析"></a>2.Simulink  and Code  分析</h2><h3 id="CLA-Task"><a href="#CLA-Task" class="headerlink" title="CLA Task"></a>CLA Task</h3><p>  simulink ：</p>
 <p>  <img src="/images/cla5.png"></p>
