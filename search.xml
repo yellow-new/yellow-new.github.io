@@ -200,7 +200,7 @@
 </ul>
 <blockquote>
 <p>每个Task都可以通过中断源触发</p>
-<p>每个Task都是向DmaClaSrcSelRegs.CLA1TASKSRCSELx[TASKx]写入相应的Value</p>
+<p>DmaClaSrcSelRegs.CLA1TASKSRCSELx[TASKx]写入相应的Value</p>
 </blockquote>
 <p><img src="/images/cla2.png" alt="cla1"></p>
 <p><strong>Table 5-1</strong> 为不同触发源对应的Value（部分）</p>
@@ -218,7 +218,7 @@
 <blockquote>
 <p>Task 8 作为后台任务 一直在运行当中</p>
 </blockquote>
-<h2 id="3-Typical-CLA-Initialization-Sequence-CLA初始化过程"><a href="#3-Typical-CLA-Initialization-Sequence-CLA初始化过程" class="headerlink" title="3.Typical CLA Initialization Sequence (CLA初始化过程)"></a>3.Typical CLA Initialization Sequence (CLA初始化过程)</h2><p><img src="/images/cla3.png" alt="cla3"></p>
+<h2 id="3-CLA-Initialization-Sequence-CLA初始化过程"><a href="#3-CLA-Initialization-Sequence-CLA初始化过程" class="headerlink" title="3.CLA Initialization Sequence (CLA初始化过程)"></a>3.CLA Initialization Sequence (CLA初始化过程)</h2><p><img src="/images/cla3.png" alt="cla3"></p>
 <h2 id="4-CLA-Illegal-Opcode-Behavior-CLA非法指令"><a href="#4-CLA-Illegal-Opcode-Behavior-CLA非法指令" class="headerlink" title="4.CLA Illegal Opcode Behavior  (CLA非法指令)"></a>4.CLA Illegal Opcode Behavior  (CLA非法指令)</h2><ul>
 <li> <strong>The CLA will halt with the illegal opcode in the D2 phase of the pipeline as if it were a breakpoint. This will</strong></li>
 </ul>
