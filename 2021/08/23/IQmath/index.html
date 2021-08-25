@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yellownew.cn","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="一、Introduction–IQmathTi提供将浮点数转化为定点数的库，可以提高运算速度 TI手册中的原话： 123456Texas Instruments TMS320C28x IQmath Library is collection of highly optimized and high precision mathematical functions for C&#x2F;C++ program">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C2000---IQmath">
+<meta property="og:url" content="http://yellownew.cn/2021/08/23/IQmath/index.html">
+<meta property="og:site_name" content="YellowNew的小站">
+<meta property="og:description" content="一、Introduction–IQmathTi提供将浮点数转化为定点数的库，可以提高运算速度 TI手册中的原话： 123456Texas Instruments TMS320C28x IQmath Library is collection of highly optimized and high precision mathematical functions for C&#x2F;C++ program">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yellownew.cn/images/iqmath1.png">
+<meta property="og:image" content="http://yellownew.cn/images/iqmath2.png">
+<meta property="article:published_time" content="2021-08-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-25T01:05:12.367Z">
+<meta property="article:author" content="YellowNew">
+<meta property="article:tag" content="c2000">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yellownew.cn/images/iqmath1.png">
+
+
+<link rel="canonical" href="http://yellownew.cn/2021/08/23/IQmath/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yellownew.cn/2021/08/23/IQmath/","path":"2021/08/23/IQmath/","title":"C2000---IQmath"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C2000---IQmath | YellowNew的小站</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://blog-api-9dw7hacja-stevenyellow.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="YellowNew的小站" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">YellowNew的小站</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81Introduction%E2%80%93IQmath"><span class="nav-text">一、Introduction–IQmath</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Using-the-IQmath-Library"><span class="nav-text">二、Using the IQmath Library</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-IQmath-Arguments-and-Data-Types"><span class="nav-text">1.IQmath Arguments and Data Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-IQmath-Data-type-Range-amp-Resolution"><span class="nav-text">2.IQmath Data type: Range &amp; Resolution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Calling-an-IQmath-Function-from-C"><span class="nav-text">3.Calling an IQmath Function from C</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-IQmath-Naming-Conventions"><span class="nav-text">4.IQmath Naming Conventions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Selecting-the-GLOBAL-Q-format"><span class="nav-text">5.Selecting the GLOBAL_Q format</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CASE-1"><span class="nav-text">CASE 1 :</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CASE-2"><span class="nav-text">CASE 2 :</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Converting-an-IQmath-Application-to-Floating-Point"><span class="nav-text">6.Converting an IQmath Application to Floating-Point</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IQmath-application-to-floating-point"><span class="nav-text">IQmath application to floating point</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81Function-Summary"><span class="nav-text">三、Function Summary</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-%E6%80%BB%E7%BB%93"><span class="nav-text">三.  总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="YellowNew"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">YellowNew</p>
+  <div class="site-description" itemprop="description">做一个快乐的大人</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/stevenyellow" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;stevenyellow" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yellownew.huang@gmail.com" title="E-Mail → mailto:yellownew.huang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/sitemap.xml" title="sitemap → &#x2F;sitemap.xml"><i class="fa fa-sitemap fa-fw"></i>sitemap</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/stevenyellow" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yellownew.cn/2021/08/23/IQmath/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="YellowNew">
+      <meta itemprop="description" content="做一个快乐的大人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YellowNew的小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C2000---IQmath
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-23T00:00:00+08:00">2021-08-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-25 09:05:12" itemprop="dateModified" datetime="2021-08-25T09:05:12+08:00">2021-08-25</time>
+      </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2021/08/23/IQmath/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2021/08/23/IQmath/" data-xid="/2021/08/23/IQmath/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="一、Introduction–IQmath"><a href="#一、Introduction–IQmath" class="headerlink" title="一、Introduction–IQmath"></a>一、Introduction–IQmath</h1><p>Ti提供将浮点数转化为定点数的库，可以提高运算速度</p>
+<p>TI手册中的原话：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Texas Instruments TMS320C28x IQmath Library is collection of highly optimized and high precision mathematical functions for C/C++ </span><br><span class="line">programmers <span class="selector-tag">to</span> seamlessly port <span class="selector-tag">a</span> floating-point algorithm into fixed point <span class="selector-tag">code</span> on TMS320C28x devices. </span><br><span class="line">These routines are typically used </span><br><span class="line">in computationally intensive real-<span class="selector-tag">time</span> applications where optimal execution speed and high accuracy is critical.</span><br><span class="line">By using these routines you can achieve execution speeds considerable faster than equivalent <span class="selector-tag">code</span> written in standard ANSI C language.</span><br><span class="line">In addition, by providing ready-<span class="selector-tag">to</span>-use high precision functions, TI IQmath library can shorten significantly your DSP application development <span class="selector-tag">time</span>.</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span> 
+
+<h1 id="二、Using-the-IQmath-Library"><a href="#二、Using-the-IQmath-Library" class="headerlink" title="二、Using the IQmath Library"></a>二、Using the IQmath Library</h1><h2 id="1-IQmath-Arguments-and-Data-Types"><a href="#1-IQmath-Arguments-and-Data-Types" class="headerlink" title="1.IQmath Arguments and Data Types"></a>1.IQmath Arguments and Data Types</h2><p>IQ1—IQ30 定义了不同大小和精度的数据类型</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq; <span class="comment">/* Fixed point data type: GLOBAL_Q format */</span>  <span class="comment">// 这个为全局变量 需要单独定义</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq30; <span class="comment">/* Fixed point data type: Q30 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq29; <span class="comment">/* Fixed point data type: Q29 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq28; <span class="comment">/* Fixed point data type: Q28 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq27; <span class="comment">/* Fixed point data type: Q27 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq26; <span class="comment">/* Fixed point data type: Q26 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq25; <span class="comment">/* Fixed point data type: Q25 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq24; <span class="comment">/* Fixed point data type: Q24 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq23; <span class="comment">/* Fixed point data type: Q23 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq22; <span class="comment">/* Fixed point data type: Q22 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq21; <span class="comment">/* Fixed point data type: Q21 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq20; <span class="comment">/* Fixed point data type: Q20 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq19; <span class="comment">/* Fixed point data type: Q19 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq18; <span class="comment">/* Fixed point data type: Q18 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq17; <span class="comment">/* Fixed point data type: Q17 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq16; <span class="comment">/* Fixed point data type: Q16 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq15; <span class="comment">/* Fixed point data type: Q15 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq14; <span class="comment">/* Fixed point data type: Q14 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq13; <span class="comment">/* Fixed point data type: Q13 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq12; <span class="comment">/* Fixed point data type: Q12 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq11; <span class="comment">/* Fixed point data type: Q11 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq10; <span class="comment">/* Fixed point data type: Q10 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq9; <span class="comment">/* Fixed point data type: Q9 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq8; <span class="comment">/* Fixed point data type: Q8 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq7; <span class="comment">/* Fixed point data type: Q7 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq6; <span class="comment">/* Fixed point data type: Q6 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq5; <span class="comment">/* Fixed point data type: Q5 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq4; <span class="comment">/* Fixed point data type: Q4 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq3; <span class="comment">/* Fixed point data type: Q3 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq2; <span class="comment">/* Fixed point data type: Q2 format */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> _iq1; <span class="comment">/* Fixed point data type: Q1 format */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-IQmath-Data-type-Range-amp-Resolution"><a href="#2-IQmath-Data-type-Range-amp-Resolution" class="headerlink" title="2.IQmath Data type: Range &amp; Resolution"></a>2.IQmath Data type: Range &amp; Resolution</h2><p> 给出了每种数据类型的范围以及精度</p>
+<p>特别提醒了 IQNsin, IQNcos, IQNatan2, IQNatan2PU, IQatan的函数是不支持<strong>Q30</strong>格式的</p>
+<p><img src="/images/iqmath1.png" alt="image-20210814102534781"></p>
+<h2 id="3-Calling-an-IQmath-Function-from-C"><a href="#3-Calling-an-IQmath-Function-from-C" class="headerlink" title="3.Calling an IQmath Function from C"></a>3.Calling an IQmath Function from C</h2><ul>
+<li><p>在文件中包含IQmath.h文件</p>
+</li>
+<li><p>将代码与IQmath.h连接</p>
+</li>
+<li><p>在CMD文件中放置IQmath代码段</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;IQmathLib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.14159</span></span><br><span class="line">_iq input, sin_out;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span> )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">/* 0.25 x PI radians represented in Q29 format */</span></span><br><span class="line">input=_IQ29(<span class="number">0.25</span>*PI);</span><br><span class="line">sin_out =_IQ29sin(input);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="4-IQmath-Naming-Conventions"><a href="#4-IQmath-Naming-Conventions" class="headerlink" title="4.IQmath Naming Conventions"></a>4.IQmath Naming Conventions</h2><pre><code>对于名字的命名 规则的介绍
+</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> GLOBAL_Q function, that takes input/output in GLOBAL_Q format</span><br><span class="line">C-Code Examples:</span><br><span class="line"> _IQsin(A) <span class="comment">/* High Precision SIN */</span></span><br><span class="line"> _IQcos(A) <span class="comment">/* High Precision COS */</span></span><br><span class="line"> _IQrmpy(A,B) <span class="comment">/* IQ multiply with rounding */</span></span><br><span class="line"> _IQmpy(A,B) <span class="comment">/* IQ multiply */</span></span><br><span class="line">    </span><br><span class="line"> Q-format specific functions to cater to Q1 to Q30 data format.</span><br><span class="line">    </span><br><span class="line">C-Code Examples:</span><br><span class="line"> _IQ29sin(A) <span class="comment">/* High Precision SIN: input/output are in Q29 */</span></span><br><span class="line"> _IQ28sin(A) <span class="comment">/* High Precision SIN: input/output are in Q28 */</span></span><br><span class="line"> _IQ27sin(A) <span class="comment">/* High Precision SIN: input/output are in Q27 */</span></span><br><span class="line"> _IQ26sin(A) <span class="comment">/* High Precision SIN: input/output are in Q26 */</span></span><br><span class="line"> _IQ25sin(A) <span class="comment">/* High Precision SIN: input/output are in Q25 */</span></span><br><span class="line"> _IQ24sin(A) <span class="comment">/* High Precision SIN: input/output are in Q24 */</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/images/iqmath2.png" alt="image-20210814104701624"></p>
+<h2 id="5-Selecting-the-GLOBAL-Q-format"><a href="#5-Selecting-the-GLOBAL-Q-format" class="headerlink" title="5.Selecting the GLOBAL_Q format"></a>5.Selecting the GLOBAL_Q format</h2><h4 id="CASE-1"><a href="#CASE-1" class="headerlink" title="CASE 1 :"></a>CASE 1 :</h4><p>默认Global_q格式设置为Q24。编辑“iqmathlib.h”标题文件以根据需要修改此值，用户可以从Q1到Q29选择为Global_Q格式。修改此值</p>
+<p>意味着所有Global_Q函数将使用此Q格式进行输入/输出，除非在源代码中覆盖此符号定义。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> GLOBAL_Q</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GLOBAL_Q 24 <span class="comment">/* Q1 to Q29 */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="CASE-2"><a href="#CASE-2" class="headerlink" title="CASE 2 :"></a>CASE 2 :</h4><p>完整的系统由各种模块组成。某些模块可能需要不同的精度，然后是系统的其余部分。在这种情况下，我们需要过度乘以在“iqmathlib.h”文件中</p>
+<p>定义的global_q，并使用本地q格式。这可以通过在Include语句之前定义模块的源文件中的Global_q常数来轻松完成</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GLOBAL_Q 27 <span class="comment">/* Set the Local Q value */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IQmathLib.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-Converting-an-IQmath-Application-to-Floating-Point"><a href="#6-Converting-an-IQmath-Application-to-Floating-Point" class="headerlink" title="6.Converting an IQmath Application to Floating-Point"></a>6.Converting an IQmath Application to Floating-Point</h2><h3 id="IQmath-application-to-floating-point"><a href="#IQmath-application-to-floating-point" class="headerlink" title="IQmath application to floating point"></a>IQmath application to floating point</h3><ol>
+<li><p>在IQMath头文件中，选择Float_Math。头文件将所有IQMATH函数调用转换为其浮点代码格式</p>
+</li>
+<li><p>在将浮点数写入设备寄存器时，您需要将浮点数转换为整数。同样在从寄存器读取值时，它需要转换为浮动。在这两种情况下，这是通过将数量乘以转换因子来完成的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">For example to convert a floating-point number to IQ15, multiply by <span class="number">32768.0</span>.   <span class="comment">//将float转化为IO15 需要乘以32769.0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> MATH_TYPE == IQ_MATH</span></span><br><span class="line">PwmReg = (int16)_IQtoIQ15(Var1);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span> <span class="comment">// MATH_TYPE is FLOAT_MATH</span></span></span><br><span class="line">PwmReg = (int16)(<span class="number">32768.0L</span>*Var1);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h1 id="三、Function-Summary"><a href="#三、Function-Summary" class="headerlink" title="三、Function Summary"></a>三、Function Summary</h1><ul>
+<li><p>Format conversion utilities : atoIQ, IQtoF, IQtoIQN etc.    //格式转化</p>
+</li>
+<li><p>Arithmetic Functions : IQmpy, IQdiv etc.      </p>
+<p>//算数函数</p>
+</li>
+<li><p>Trigonometric Functions : IQsin, IQcos, IQatan2 etc.       //三角函数</p>
+</li>
+<li><p>Mathematical functions : IQsqrt, IQisqrt etc.                               //数学函数</p>
+</li>
+<li><p>Miscellaneous : IQabs, IQsat etc    </p>
+<p>//其他                                               </p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.ti.com.cn/cn/lit/sw/sprc990/sprc990.pdf?ts=1629795754578&ref_url=https%253A%252F%252Fwww.ti.com.cn%252Fsitesearch%252Fdocs%252Funiversalsearch.tsp%253FlangPref%253Dzh-CN%2526searchTerm%253Diqmath%2526nr%253D3376">详细文档</a></p>
+</li>
+</ol>
+<h1 id="三-总结"><a href="#三-总结" class="headerlink" title="三.  总结"></a>三.  总结</h1><p><font color=#999AAA > 对于IQMATH的简单介绍，具体使用还请看手册Example。使用难度不大需要把头文件引入让后按照IQ格式区替换所需的代码即可</p>
+<p>单还是需要注意一些用法的限制float的大小范围等</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/c2000/" rel="tag"> <i class="fa fa-tag"></i> c2000</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/21/GPIO%20%E7%82%B9%E7%81%AF/" rel="prev" title="MATLAB C2000 例程（一）---GPIO点灯">
+                  <i class="fa fa-chevron-left"></i> MATLAB C2000 例程（一）---GPIO点灯
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/24/CLA+Sinulink/" rel="next" title="MATLAB C2000 例程（三）---CLA与CPU交互blink LED">
+                  MATLAB C2000 例程（三）---CLA与CPU交互blink LED <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">湘ICP备2021004222号 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YellowNew</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">4k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+  <div id="site-runtime">
+  <span class="post-meta-item-icon">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <span id="runtime"></span>
+</div>
+
+<script language="javascript">
+  function isPC() {
+    var userAgentInfo = navigator.userAgent;
+    var agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+    for (var i = 0; i < agents.length; i++) {
+      if (userAgentInfo.indexOf(agents[i]) > 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function siteTime(openOnPC, start) {
+    window.setTimeout("siteTime(openOnPC, start)", 1000);
+    var seconds = 1000;
+    var minutes = seconds * 60;
+    var hours = minutes * 60;
+    var days = hours * 24;
+    var years = days * 365;
+      start = new Date("2021-8-20 9:00:00 +0800");
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    var diff = now - start;
+
+    var diffYears = Math.floor(diff / years);
+    var diffDays = Math.floor((diff / days) - diffYears * 365);
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+
+    if (openOnPC) {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + " years " + diffDays + " days " + diffHours + " hours " + diffMinutes + " mins " + diffSeconds + " secs";
+    } else {
+      document.getElementById("runtime").innerHTML = "Running: " + diffYears + "y " + diffDays + "d " + diffHours + "h " + diffMinutes + "m " + diffSeconds + "s";
+    }
+  }
+
+  var showOnMobile = false;
+  var openOnPC = isPC();
+  var start = new Date();
+  siteTime(openOnPC, start);
+
+  if (!openOnPC && !showOnMobile) {
+    document.getElementById('site-runtime').style.display = 'none';
+  }
+</script>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://blog-api-9dw7hacja-stevenyellow.vercel.app","placeholder":"Just go","avatar":"monsterid","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"dark":"auto","requiredMeta":[],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/2021/08/23/IQmath/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>
