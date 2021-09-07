@@ -203,7 +203,7 @@
 <h3 id="2-串口打印"><a href="#2-串口打印" class="headerlink" title="2.串口打印"></a>2.串口打印</h3><p>通过串口将数据打印到上位机，将数据画图。可以非常直观的调节pid的参数，提高整定pid参数的速度。推荐使用 <a href="https://www.vofa.plus/">VOFA+</a>。  </p>
 <p><img src="https://img-blog.csdnimg.cn/20210512112409694.gif" alt="在这里插入图片描述"></p>
 <p><img src="https://img-blog.csdnimg.cn/20210512112432641.gif" alt="在这里插入图片描述"></p>
-<h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><p>   <a href="http://yellownew.cn/">PROWINTER</a><br>    特别鸣谢prowinter的指导</p>
+<h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><p>   <a href="http://yellownew.cn/">PROWINTER</a></p>
 ]]></content>
       <tags>
         <tag>c2000</tag>
